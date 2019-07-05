@@ -1,19 +1,13 @@
-var content_id = -1;
-var str1 = "\(";
-console.log('Here we are!');
+var commentButton = document.getElementById("insertCommentButton");
 
-chrome.input.ime.onFocus.addListener(function(context) {
-  context_id = context.contextID;
-});
+commentButton.addEventListener("click", myFunction);
 
-chrome.input.ime.onKeyEvent.addListener(
-  function(engineID, keyData) {
-    if (keyData.type == "keydown" && content_id === -1) {
-      chrome.input.ime.commitText({"contextID": context_id,
-      "text": str1.concat(keyData.key())});
-      content_id=1;
-      return true;
-    } else {
-      return false;
-    }
-});
+function myFunction() {
+    var inputMessage = document.querySelector("textarea.docos-input-textarea");
+    inputMessage.addEventListener("keyup", function(e) {
+        if(e.keyCode == 190){
+              console.log("HELLO");
+              inputMessage.value = inputMessage.value +" :)";
+        }
+  })
+}
